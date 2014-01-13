@@ -1,5 +1,7 @@
 #include <iostream>
-#include <binarytree.h>
+#include "binarytree.h"
+
+using namespace std;
 
 int main()
 {
@@ -10,8 +12,9 @@ int main()
 	root->right = rc;
 	struct BTNode* lcr = CreateNode(3);
 	lc->right = lcr;
+	InsertElement(root, 4);
 	LevelOrder(root);
-	cout <<"\n 	Max is: ";
+	cout << "Max is: ";
 	cout << FindMax(root)<<endl;
 	return 0;
 }

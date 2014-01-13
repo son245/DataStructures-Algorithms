@@ -7,7 +7,8 @@ struct BTNode{
 	struct BTNode *right;
 };
 
-void LevelOrder(struct BTNode *root);
 struct BTNode* CreateNode(int data);
-
+int FindMax(struct BTNode *root);
+void LevelOrder(struct BTNode *root);
+void InsertElement(struct BTNode *root, int data);
 #endif 

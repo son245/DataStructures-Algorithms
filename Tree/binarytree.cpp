@@ -4,7 +4,7 @@
 
 using namespace std;
 
-
+//create a new Binary tree node
 struct BTNode* CreateNode(int data)
 {
 	struct BTNode* newNode = new (struct BTNode);
@@ -14,6 +14,7 @@ struct BTNode* CreateNode(int data)
 	return newNode;
 }
  
+//using pre order traversal
 void PreOrder(struct BTNode *root){
 	if(root){
 		cout << root->data;//process data
@@ -22,6 +23,7 @@ void PreOrder(struct BTNode *root){
 	}
 }
 
+//using in order travsersal
 void InOrder(struct BTNode *root){
 	if(root){
 		InOrder(root->left);
@@ -30,6 +32,7 @@ void InOrder(struct BTNode *root){
 	}
 }
 
+//using post order traversal
 void PostOrder(struct BTNode *root){
 	if(root){
 		PostOrder(root->left);
@@ -38,6 +41,7 @@ void PostOrder(struct BTNode *root){
 	}
 }
 
+//traverse using level order
 void LevelOrder(struct BTNode *root){
 	queue<BTNode*> Q;
 	struct BTNode *temp;
@@ -58,6 +62,43 @@ void LevelOrder(struct BTNode *root){
 	
 }
 
+//insert with level order traversal
+void InsertElement(struct BTNode *root, int data)
+{
+	queue<BTNode*> Q;
+	struct BTNode *temp;
+	struct BTNode *newNode;
+	newNode->left = NULL;
+	newNode->right = NULL;
+	newNode->data = data;
+	if(root){
+		Q.push(root);
+	}
+	else{
+		root = newNode;
+		return;
+	}
+	while(!Q.empty()){
+		temp = Q.front();
+		if(temp->left){
+			Q.push(temp->left);
+		}
+		else{
+			temp->left = newNode;
+			return;
+		}
+		if(temp->right){
+			Q.push(temp->right);
+		}
+		else{
+			temp->right = newNode;
+			return;
+		}
+		Q.pop();
+	}
+}
+
+//find the maximum data of the tree
 int FindMax(struct BTNode *root){
 	int root_value, left, right, max = 0;
 	if(root!=NULL){
@@ -78,20 +119,3 @@ int FindMax(struct BTNode *root){
 	}
 	return max;
 }
-
-int main()
-{
-	struct BTNode* root = CreateNode(0);
-	struct BTNode* lc = CreateNode(1);
-	struct BTNode* rc = CreateNode(5);
-	root->left = lc;
-	root->right = rc;
-	struct BTNode* lcr = CreateNode(3);
-	lc->right = lcr;
-	LevelOrder(root);
-	cout <<"\n 	Max is: ";
-	cout << FindMax(root)<<endl;
-	return 0;
-}
-
-
