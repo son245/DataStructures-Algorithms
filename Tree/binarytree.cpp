@@ -1,5 +1,7 @@
 #include <iostream>
 #include <queue>
+#include <stack>
+#include <stdlib.h>
 #include "binarytree.h"
 
 using namespace std;
@@ -62,12 +64,38 @@ void LevelOrder(struct BTNode *root){
 	
 }
 
+//printing level order data in reverse order(left-> right, bottom up)
+void LevelOrderReverse(struct BTNode *root){
+	queue<BTNode*> Q;
+	stack<BTNode*> S;
+	struct BTNode *temp;
+	if(root){
+		Q.push(root);
+	}
+	while(!Q.empty()){
+		S.push(Q.front());
+		temp = Q.front();
+		Q.pop();
+		if(temp->right){
+			Q.push(temp->right);
+		}
+		if(temp->left){
+			Q.push(temp->left);
+		}
+	}
+	while(!S.empty()){
+		temp = S.top();
+		cout << temp->data;
+		S.pop();
+	}
+}
+
 //insert with level order traversal
 void InsertElement(struct BTNode *root, int data)
 {
 	queue<BTNode*> Q;
 	struct BTNode *temp;
-	struct BTNode *newNode;
+	struct BTNode* newNode = new (struct BTNode);
 	newNode->left = NULL;
 	newNode->right = NULL;
 	newNode->data = data;
@@ -91,10 +119,21 @@ void InsertElement(struct BTNode *root, int data)
 			Q.push(temp->right);
 		}
 		else{
-			temp->right = newNode;
+			temp->right = newNode; 
 			return;
 		}
 		Q.pop();
+	}
+	return;
+}
+
+//find the size of the binary tree
+int FindSize(struct BTNode *root){
+	if(!root){
+		return 0;
+	}
+	else{
+		return (FindSize(root->left) + 1 + FindSize(root->right));
 	}
 }
 
@@ -118,4 +157,48 @@ int FindMax(struct BTNode *root){
 		}
 	}
 	return max;
+}
+
+//delete the tree using post order traversal
+//error! not working 
+void DeleteBinaryTree(struct BTNode *root){
+	if(root != NULL){
+	DeleteBinaryTree(root->left);
+	DeleteBinaryTree(root->right);
+	free(root);
+	root = NULL;		
+	}
+}
+
+//find the Height of binary tree
+int FindHeightBinaryTree(struct BTNode *root){
+	int leftHeight;
+	int rightHeight;
+	if(root == NULL){
+		return 0;
+	}
+	else{
+		leftHeight = FindHeightBinaryTree(root->left);
+		rightHeight = FindHeightBinaryTree(root->right);
+		if(leftHeight > rightHeight){
+			return leftHeight + 1;
+		}
+		else{
+			return rightHeight + 1;
+		}
+	}
+}
+
+//Find the deepest node
+struct BTNode * FindDeepestNodeBinaryTree(struct BTNode *root){
+	queue<BTNode*> Q;
+	struct BTNode *temp;
+	if(!root){
+		return NULL;
+	}
+	Q.push(root);
+	int level = 1;
+	while(!Q.empty()){
+		temp = Q.front();
+	}
 }
