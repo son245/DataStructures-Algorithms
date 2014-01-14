@@ -189,8 +189,8 @@ int FindHeightBinaryTree(struct BTNode *root){
 	}
 }
 
-//Find the deepest node
-struct BTNode * FindDeepestNodeBinaryTree(struct BTNode *root){
+//Find the deepest node(inprogress)
+/*struct BTNode * FindDeepestNodeBinaryTree(struct BTNode *root){
 	queue<BTNode*> Q;
 	struct BTNode *temp;
 	if(!root){
@@ -200,5 +200,6 @@ struct BTNode * FindDeepestNodeBinaryTree(struct BTNode *root){
 	int level = 1;
 	while(!Q.empty()){
 		temp = Q.front();
+
 	}
-}
+}*/

@@ -5,25 +5,30 @@ using namespace std;
 
 int main()
 {
-	struct BTNode* root = CreateNode(1);
-	InsertElement(root, 2);
-	InsertElement(root, 3);
-	InsertElement(root, 4);
+/*	
+			6
+		5		9
+	3		5		1
+*/	
+
+	//create root using CreateNode
+	struct BTNode* root = CreateNode(6);
+	//insert using level order traversal
 	InsertElement(root, 5);
-	InsertElement(root, 6);
-	InsertElement(root, 7);
+	InsertElement(root, 9);
+	InsertElement(root, 3);
+	InsertElement(root, 5);
+	InsertElement(root, 1);
 
-
-/*	struct BTNode* lc = CreateNode(1);
+/*	create and modify nodes using CreateNode function
+	struct BTNode* lc = CreateNode(1);
 	struct BTNode* rc = CreateNode(5);
 	root->left = lc;
 	root->right = rc;
 	struct BTNode* lcr = CreateNode(3);
 	lc->right = lcr;
 */	
-//	InsertElement(root, 4);
-	LevelOrderReverse(root);
-	cout << "\n";
+	//testing
 	LevelOrder(root);
 	cout << "Max is: ";
 	cout << FindMax(root)<<endl;
