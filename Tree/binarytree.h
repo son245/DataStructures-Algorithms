@@ -1,18 +1,41 @@
 #ifndef BINARYTREE_H
 #define BINARYTREE_H
-
-struct BTNode{
+class BinaryTreeNode{
+public:
 	int data;
-	struct BTNode *left;
-	struct BTNode *right;
+	//left pointer
+	BinaryTreeNode *left;
+	//right pointer
+	BinaryTreeNode *right;
+	//pointer to parent
+	BinaryTreeNode *parent;
+	//Null constructor	
+	BinaryTreeNode();
+	//constructor with data
+	BinaryTreeNode(int data);
+	//delete the tree node	
+	~BinaryTreeNode();
+	//set left pointer
+	void setLeft(BinaryTreeNode* node);
+	//set right pointer
+	void setRight(BinaryTreeNode* node);
 };
 
-struct BTNode* CreateNode(int data);
-int FindMax(struct BTNode *root);
-void LevelOrder(struct BTNode *root);
-void InsertElement(struct BTNode *root, int data);
-int FindSize(struct BTNode *root);
-void LevelOrderReverse(struct BTNode *root);
-void DeleteBinaryTree(struct BTNode *root);
-int FindHeightBinaryTree(struct BTNode *root);
+class BinaryTree{
+public:
+	BinaryTreeNode *root;
+	BinaryTree();
+	BinaryTree(int rootValue);
+	~BinaryTree();
+};
+
+void InsertElement(BinaryTree *root, int data);
+void PreOrder(BinaryTreeNode *root);
+void InOrder(BinaryTreeNode *root);
+void PostOrder(BinaryTreeNode *root);
+void LevelOrder(BinaryTreeNode *root);	
+void LevelOrderReverse(BinaryTreeNode *root);
+int FindSize(BinaryTreeNode* root);
+int FindMax(BinaryTreeNode* root);
+void DeleteBinaryTree(BinaryTreeNode *root);
 #endif
